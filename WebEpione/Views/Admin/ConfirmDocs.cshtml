@@ -1,0 +1,203 @@
+﻿@model IEnumerable<WebEpione.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "ConfirmDocs";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2>ConfirmDocs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibSpec)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibSpec)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}*@
+
+</table>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Bookings</li>
+        </ol>
+        <div class="box_general">
+            <div class="header_box">
+                <h2 class="d-inline-block">List Of Doctors</h2>
+                <div class="filter">
+                    <select name="orderby" class="selectbox">
+                        <option value="Any status">Any status</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="list_general">
+@foreach (var item in Model)
+{
+                <ul>
+                    <li>
+                        <figure><img src="~/ContentAdmin/img/apple-touch-icon-144x144-precomposed.png" alt=""></figure>
+                        <h4>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName) 
+                      <i class="pending">Pending</i></h4>
+                        <ul class="booking_details">
+                            <li><strong>E-mail</strong> @Html.DisplayFor(modelItem => item.Email)</li>
+                            <li><strong>Adress</strong> @Html.DisplayFor(modelItem => item.address)</li>
+                            <li><strong>Phone Number</strong> @Html.DisplayFor(modelItem => item.phoneNumber)</li>
+                            <li><strong>Speciality</strong>@Html.DisplayFor(modelItem => item.Speciality)</li>
+                            <li><strong>Email</strong> @Html.DisplayFor(modelItem => item.Email)<li>
+                            
+
+                            
+                        </ul>
+                        <ul class="buttons">
+                            
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("CheckDoc", "CheckDoc", new { id = item.Id })
+                        </ul>
+                    </li>
+                    
+                </ul>
+}
+            </div>
+        </div>
+        <!-- /box_general-->
+        @*<nav aria-label="...">
+            <ul class="pagination pagination-sm add_bottom_30">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>*@
+        <!-- /pagination-->
+    </div>
+    <!-- /container-fluid-->
+</div>
+<!-- /container-wrapper-->
+<footer class="sticky-footer">
+    <div class="container">
+        <div class="text-center">
+            <small>Copyright © FinDoctor 2017</small>
+        </div>
+    </div>
+</footer>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="vendor/jquery.selectbox-0.2.js"></script>
+<script src="vendor/retina-replace.min.js"></script>
+<script src="vendor/jquery.magnific-popup.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/admin.js"></script>
+

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebEpione.Models.StepViewModel>
+
+@{
+    ViewBag.Title = "DetailsPatient";
+    Layout = "~/Views/Shared/MyProfileLayout.cshtml";
+}
+
+
+<div class="col-xl-9 col-lg-8">
+
+    <div class="tabs_styled_2">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active">Treatments</a>
+            </li>
+            
+
+        </ul>
+        <!--/nav-tabs -->
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
+                <p class="lead add_bottom_30">This is all the steps of the treatment.</p>
+
+                <div class="main_title_3">
+                    <h3>Steps of treatment @ViewBag.illness</h3>
+                </div>
+                <div class="form-group add_bottom_45">
+
+                    <div class="margin_60_35">
+
+                        <div class="pricing-container cd-has-margins">
+                            <ul class="pricing-list">
+
+                                @foreach (var item in Model)
+                                {
+
+                                    <li @(item.Validation == "NotValid" ? String.Empty : "class=popular" )>
+
+
+                                        <ul class="pricing-wrapper">
+                                            <li class="is-visible">
+                                                <header class="pricing-header">
+                                                    <h2>@Html.DisplayFor(modelItem => item.Validation)</h2>
+
+                                                    <div class="price">
+                                                        <span class="currency">@Convert.ToDateTime(item.StepDate).ToString("dd/MM/yyyy")</span>
+                                                        <span class="price">@Html.DisplayFor(modelItem => item.StepSpeciality)</span>
+                                                        <span class="price-duration">@Html.DisplayFor(modelItem => item.StepDescription)</span>
+                                                    </div>
+                                                </header>
+                                                <!-- /pricing-header -->
+                                                <div class="pricing-body">
+                                                    <ul class="pricing-features">
+                                                        <li>Appointment <em> @Html.DisplayFor(modelItem => item.Appointment)</em></li>
+                                                        <li>Modified <em>@Html.DisplayFor(modelItem => item.NbModifications)</em> times</li>
+                                                        <li><em>Last modification by </em> @Html.DisplayFor(modelItem => item.LastModificationBy)</li>
+                                                        <li><em>Modification reason</em> @Html.DisplayFor(modelItem => item.ModificationReason)</li>
+                                                        <li>Modification date <em> @Html.DisplayFor(modelItem => item.LastModificationDate)</em></li>
+
+                                                    </ul>
+                                                </div>
+                                                <!-- /pricing-body -->
+                                                <footer class="pricing-footer">
+                                                    <a class="select-plan" href=@Url.Action("EditPatient", "Step", new { id = item.StepId })>Select</a>
+                                                </footer>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <!-- /pricing-wrapper -->
+                                }
+
+
+                            </ul>
+                            <!-- /pricing-list -->
+                        </div>
+                        <!-- /pricing-container -->
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

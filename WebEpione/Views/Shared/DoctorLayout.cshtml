@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "DoctorLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="breadcrumb">
+    <div class="container">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>Doctor profile</li>
+
+        </ul>
+    </div>
+</div>
+<!-- /breadcrumb -->
+@Html.Action("DoctorInformations", "Home")
+@RenderBody()

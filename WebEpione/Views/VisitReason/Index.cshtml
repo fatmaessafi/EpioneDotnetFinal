@@ -1,0 +1,232 @@
+﻿@model IEnumerable<WebEpione.Models.VisitReasonViewModel>
+
+@{
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+    }
+
+
+
+
+
+
+            <div class="col-xl-9 col-lg-8">
+
+                <div class="tabs_styled_2">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="book-tab" data-toggle="tab" href="#book" role="tab" aria-controls="book">Your performance</a>
+                        </li>
+                        
+                        
+                    </ul>
+                    <!--/nav-tabs -->
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
+                            
+                                
+                                <div class="form-group add_bottom_45">
+                                    <div id="calendar"></div>
+                                    <input type="hidden" id="my_hidden_input">
+                                   
+                                </div>
+                                
+                              
+                                <!-- /row -->
+
+                                <div class="main_title_3">
+                                    <h3> Your visit reasons </h3>
+                                </div>
+@foreach (var item in Model)
+{
+                                <ul class="treatments clearfix">
+                                    <li>
+                                        <div class="checkbox">
+                                            <input type="checkbox" class="css-checkbox" id="visit1" name="visit1">
+                                            <label for="visit1" class="css-label">
+                                                @Html.DisplayFor(modelItem => item.VRDescription)
+                                            <h5><a href=@Url.Action("Edit", "VisitReason", new { id = item.VRId })><i class="pe-7s-note"></i></a></h5>
+
+                                            <h5><a href=@Url.Action("Delete", "VisitReason", new { id = item.VRId })><i class="pe-7s-trash"></i></a></h5>
+                                        </label>
+                                        </div>
+                                    </li>
+                                   
+                                   
+                                    
+                                </ul>}
+                            
+                            <hr>
+                            <a class="nav-link" href=@Url.Action("Create", "VisitReason")><i class="pe-7s-plus"></i> New visit reason</a>
+                        </div>
+                        <!-- /tab_1 -->
+
+                        
+                        <!-- /tab_2 -->
+
+                        
+                        <!-- /tab_3 -->
+                    </div>
+                    <!-- /tab-content -->
+                </div>
+                <!-- /tabs_styled -->
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VRDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VRDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorId)
+            </td>
+           <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.VRId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.VRId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.VRId })
+            </td>
+        </tr>
+        }
+
+
+    </table>
+*@

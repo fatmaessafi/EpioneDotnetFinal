@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WebEpione.Models.StepRequestViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <div class="tabs_styled_2">
+                <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
+                <p class="lead add_bottom_30">This is all the step requests from other doctors.</p>
+
+                <div class="main_title_3">
+                    <h3>Step requests</h3>
+                </div>
+                <div class="form-group add_bottom_45">
+                    <table class="table">
+                        <tr>
+                           <th>
+                               @Html.DisplayNameFor(model => model.Patient)
+                           </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewStepDescription)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewStepSpeciality)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewStepDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewValidation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewLastModificationBy)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewLastModificationDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewModificationReason)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NewTreatmentIllness)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </th>
+                            <th>
+                                Accept
+                            </th>
+                            <th>
+                                Deny
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Patient)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewStepDescription)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewStepSpeciality)
+                                </td>
+                                <td>
+                            @Convert.ToDateTime(item.NewStepDate).ToString("dd/MM/yyyy")                            
+                                    </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewValidation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewLastModificationBy)
+                                </td>
+                                <td>
+                        @Convert.ToDateTime(item.NewLastModificationDate).ToString("dd/MM/yyyy")                              
+                                  </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewModificationReason)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NewTreatmentIllness)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    <h1><a href=@Url.Action("Accept", "StepRequest", new { id = item.NewStepId })><i class="pe-7s-check"></i></a></h1>
+                                  
+                                   
+                                </td>
+                                <td>
+                                    <h1><a href=@Url.Action("Deny", "StepRequest", new { id = item.NewStepId })><i class="pe-7s-close-circle"></i></a></h1>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    </div>
+            </div>
+        </div>
+    </div>

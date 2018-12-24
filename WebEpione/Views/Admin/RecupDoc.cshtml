@@ -1,0 +1,156 @@
+﻿@model IEnumerable<WebEpione.Models.UserViewModel >
+@{
+    ViewBag.Title = "RecupDoc";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2>RecupDoc</h2>
+@*<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Data Table Example
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Speciality</th>
+                                <th>Adress</th>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Name</th>
+                                <th>Speciality</th>
+                                <th>Adress</th>      
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.doctolibName) </td>
+                                <td>@Html.DisplayFor(modelItem => item.doctolibSpec)</td>
+                                <td>@Html.DisplayFor(modelItem => item.doctolibAdress)</td>
+                             
+                               <td><a href="@Url.Action("DetailsDoc", "Admin", new { add = item.doctolibADD,  nom = item.doctolibNOM, spc = item.doctolibSPC })" class="btn btn-primary btn-xs"></td>
+</tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+        <!-- /tables-->
+    </div>
+    <!-- /container-fluid-->
+</div>*@
+<!-- /container-wrapper-->
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Bookmarks</li>
+        </ol>
+        <div class="box_general">
+            <div class="header_box">
+                <h2 class="d-inline-block">Bookmarks List</h2>
+                <div class="filter">
+                    <select name="orderby" class="selectbox">
+                        <option value="Any time">Any time</option>
+                        <option value="Latest">Latest</option>
+                        <option value="Oldest">Oldest</option>
+                    </select>
+                </div>
+            </div>
+            <div class="list_general">
+                <ul>
+@foreach (var item in Model)
+                    {
+                    <li>
+                        <figure><img src="~/ContentAdmin/img/doclogo.png" alt=""></figure>
+                        <small>@Html.DisplayFor(modelItem => item.doctolibSpec)</small>
+                        <h4>@Html.DisplayFor(modelItem => item.doctolibName) </h4>
+                        <p>@Html.DisplayFor(modelItem => item.doctolibAdress)<br></p>
+                        <p><a href="@Url.Action("DetailsDoc", "Admin", new { add = item.doctolibADD,  nom = item.doctolibNOM, spc = item.doctolibSPC })" class="btn_1 gray"><i class="fa fa-fw fa-user"></i> View profile</a></p>
+
+                            
+                            </li>
+                    }
+                        </ul>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /box_general-->
+        <nav aria-label="...">
+            <ul class="pagination pagination-sm add_bottom_30">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /pagination-->
+    </div>
+    <!-- /container-fluid-->
+</div>
+<footer class="sticky-footer">
+    <div class="container">
+        <div class="text-center">
+            <small>Copyright © FinDoctor 2017</small>
+        </div>
+    </div>
+</footer>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="~/ContentAdmin/vendor/jquery/jquery.min.js"></script>
+<script src="~/ContentAdmin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="~/ContentAdmin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="~/ContentAdmin/vendor/chart.js/Chart.min.js"></script>
+<script src="~/ContentAdmin/vendor/datatables/jquery.dataTables.js"></script>
+<script src="~/ContentAdmin/vendor/datatables/dataTables.bootstrap4.js"></script>
+

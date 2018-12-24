@@ -1,0 +1,75 @@
+﻿@model WebEpione.Models.VisitReasonViewModel
+
+@{
+    Layout = "~/Views/Shared/DoctorLayout.cshtml";
+}
+
+
+
+
+
+
+<div class="col-xl-9 col-lg-8">
+
+    <div class="tabs_styled_2">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="book-tab" data-toggle="tab" href="#book" role="tab" aria-controls="book">Your performance</a>
+            </li>
+
+
+        </ul>
+        <!--/nav-tabs -->
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
+                
+
+                    <div class="form-group add_bottom_45">
+                        <div id="calendar"></div>
+                        <input type="hidden" id="my_hidden_input">
+
+                    </div>
+
+
+                    <!-- /row -->
+
+                    <div class="main_title_3">
+                        <h3> Your visit reasons </h3>
+                    </div>
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>VisitReasonViewModel</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.VRId)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.VRDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.VRDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.VRDescription, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+</div>
+</div>
+</div>
+</div>

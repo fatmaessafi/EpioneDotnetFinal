@@ -1,0 +1,172 @@
+﻿@using WebEpione.Models
+@model WebEpione.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+       
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="bg_color_2">
+    <div class="container margin_60_35">
+        <div id="register">
+            <h1>Create a new account</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                        <div class="box_form">
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.LastName)<br />
+                                @Html.TextBoxFor(x => x.LastName,
+                             new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.FirstName)<br />
+                                @Html.TextBoxFor(x => x.FirstName,
+                            new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Email)<br />
+                                @Html.TextBoxFor(x => x.Email,
+                           new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Password)<br />
+                                @Html.PasswordFor(x => x.Password,
+                            new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.ConfirmPassword)<br />
+                                @Html.PasswordFor(x => x.ConfirmPassword,
+                            new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.PhoneNumber)<br />
+                                @Html.TextBoxFor(x => x.PhoneNumber,
+                             new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Gender)<br />
+                                @Html.DropDownList("Gender",
+                            new SelectList(Enum.GetValues(typeof(Gender))),
+                            "Select a gender",
+                                new { @class = "form-control" })
+                            </div>
+                           
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.BirthDate)<br />
+                                @Html.TextBoxFor(x => x.BirthDate,
+                             new { @class = "form-control", type = "date" })
+                             
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.CivilStatus)<br />
+                                @Html.DropDownList("CivilStatus",
+                    new SelectList(Enum.GetValues(typeof(CivilStatus))),
+                    "Select civil status",
+                    new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.City)<br />
+                                @Html.DropDownList("City",
+                    new SelectList(Enum.GetValues(typeof(City))),
+                    "Select city",
+                    new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.HomeAddress)<br />
+                                @Html.TextBoxFor(x => x.HomeAddress,
+                             new { @class = "form-control" })
+                            </div>
+                            <!--Role-->
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Role)<br />
+                                @Html.DropDownList("Role",
+                    new SelectList(Enum.GetValues(typeof(Role))),
+                    "Select a role",
+                    new { @class = "form-control", @onChange = "THEFUNCTION(this.selectedIndex);" })
+                            </div>
+                            <!--Patient div-->
+                            <div style="display:none" id="DivPatient">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Allergies)<br />
+                                    @Html.TextBoxFor(x => x.Allergies,
+                           new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Profession)<br />
+                                    @Html.TextBoxFor(x => x.Profession,
+                            new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.SpecialReq)<br />
+                                    @Html.TextBoxFor(x => x.SpecialReq,
+                           new { @class = "form-control" })
+                                </div>
+                            </div>
+                           
+                            <!--Doctor div-->
+                            <div style="display:none" id="DivDoctor">
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Speciality)<br />
+                                    @Html.DropDownList("Speciality",
+                                      new SelectList(Enum.GetValues(typeof(Speciality))),
+                                     "What's your speciality ?",
+                                          new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(x => x.Surgeon)<br />
+                                    @Html.DropDownList("Surgeon",
+                                      new SelectList(Enum.GetValues(typeof(Surgeon))),
+                                     "Do you practice surgery ?",
+                                          new { @class = "form-control"})
+                            
+                                </div>
+                             
+                            </div>
+                           
+                            <!--JavaScript-->
+                            <script type="text/javascript">
+                                function THEFUNCTION(i) {
+                                    var DivPatient = document.getElementById('DivPatient');
+                                    var DivDoctor = document.getElementById('DivDoctor');
+
+
+                                    switch (i) {
+                                        case 1: DivDoctor.style.display = ''; DivPatient.style.display = 'none'; break;
+                                        case 2: DivPatient.style.display = ''; DivDoctor.style.display = 'none'; break;
+                                        default: DivPatient.style.display = 'none'; DivDoctor.style.display = 'none'; break;
+
+                                    }
+                                }
+                            </script>
+
+                            <div id="pass-info" class="clearfix"></div>
+                            <!--Checkbox obligatoire-->
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.TermsAndConditions,
+                             
+                                 new { @id = "check_2" })
+                                @Html.LabelFor(x => x.TermsAndConditions)
+                                @Html.ValidationMessageFor(x => x.TermsAndConditions)
+
+                            </div>
+
+                            <div class="form-group text-center add_top_30">
+                                <input class="btn_1" type="submit" value="Submit">
+                            </div>
+                        </div>
+                        <p class="text-center"><small>Make sure your informations are exact for a better experience.</small></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

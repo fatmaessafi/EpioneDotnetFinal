@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Domain.Entities.User>
+    @{
+        Layout = null;
+    }
+   
+@foreach (var item in Model)
+{
+    
+    <nav id="menu" class="main-menu">
+                  
+        <ul>
+
+            @if (TempData["role"] == "Doctor")
+            {
+
+            <li>
+                <span><a href=@Url.Action("Index", "Home")>Home</a></span>
+
+            </li>
+            <li>
+                <span><a href=@Url.Action("Index", "StepRequest", new { id = item.Id })>Requests</a></span>
+
+            </li>
+            <li>
+                <span><a href=@Url.Action("Index", "PatientFatma")>Treatments</a></span>
+
+            </li>
+            <li>
+                <span><a href=@Url.Action("Index", "Event")>Calendar</a></span>
+
+            </li>
+            <li>
+                <span><a href=@Url.Action("Index", "VisitReason")>Performance</a></span>
+
+            </li>
+
+            <li>
+                <span><a href=@Url.Action("Create", "Event")>Days Off</a></span>
+
+            </li>
+            }
+            else
+            {
+
+                <li>
+                    <span><a href=@Url.Action("IndexPatient", "Treatment")>My treatments</a></span>
+                  
+                </li>
+                <li>
+                    <span><a href=@Url.Action("Index", "Listdoc")>Book appointment</a></span>
+                </li>
+
+            }
+        </ul>
+    </nav>
+    <ul>
+        <li>
+    <img src="~/Content/img/avatarblue.png" alt="" class="img-fluid">
+<span>Connected as @ViewBag.role <b> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b>
+            </span></li>
+    </ul>         }

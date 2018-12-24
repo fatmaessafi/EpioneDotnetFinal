@@ -1,0 +1,275 @@
+﻿@model IEnumerable<WebEpione.Models.DocViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main class="theia-exception">
+    <div id="results">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><strong>Showing 10</strong> of 140 results</h4>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" id="Search" placeholder="Search :  Ex. Specialist, Name, Doctor..." class="form-control" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /results -->
+    <div class="filters_listing">
+        <div class="container">
+            <ul class="clearfix">
+                <li>
+                    <h6>Type</h6>
+                    <div class="switch-field">
+                        <input type="radio" id="all" name="type_patient" value="all" checked>
+                        <label for="all">All</label>
+                        <input type="radio" id="doctors" name="type_patient" value="doctors">
+                        <label for="doctors">Doctors</label>
+                        <input type="radio" id="clinics" name="type_patient" value="clinics">
+                        <label for="clinics">Clinics</label>
+                    </div>
+                </li>
+                <li>
+                    <h6>Layout</h6>
+                    <div class="layout_view">
+                        <a href="grid-list.html"><i class="icon-th"></i></a>
+                        <a href="#0" class="active"><i class="icon-th-list"></i></a>
+                        <a href="list-map.html"><i class="icon-map-1"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <h6>Sort by</h6>
+                    <select name="orderby" class="selectbox">
+                        <option value="Closest">Closest</option>
+                        <option value="Best rated">Best rated</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /filters -->
+
+
+        @*<div class="job-sort-by ml20 pull-right" id="clients-sort-by">
+
+                <select>
+                    <option value="#">Sort by</option>
+                    <option value="#">Name</option>
+                    <option value="#">Type</option>
+                    <option value="#">Date</option>
+                </select>
+
+            </div>  end .job-sort-by*@
+
+ 
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+@foreach (var item in Model)
+{<div class="Search">
+
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="strip_list wow fadeIn">
+                        <a href="#0" class="wish_bt"></a>
+                        <figure>
+                            <a href="detail-page.html"><img src="@Url.Content("~/Content/img/doctor_listing_2.jpg")" alt=""> </a>
+                        </figure>
+                        <small>@Html.DisplayFor(modelItem => item.Speciality)</small>
+                        <h3>@Html.DisplayFor(modelItem => item.firstname) </h3>
+                        <h3> @Html.DisplayFor(modelItem => item.lastname) </h3>
+                        <p>@Html.DisplayFor(modelItem => item.Location)</p>
+                        <span class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></span>
+                        <a href="badges.html" data-toggle="tooltip" data-placement="top" data-original-title="Badge Level" class="badge_list_1"><img src="img/badges/badge_1.svg" width="15" height="15" alt=""></a>
+                        <ul>
+                            <li><a href="#0" onclick="onHtmlClick('Doctors', 0)" class="btn_listing">View on Map</a></li>
+                            <li><a href="" target="_blank">Directions</a></li>
+                            <li> <a href=@Url.Action("IndexPatient", "Event", new { id = item.Id })>Calender</a></li>
+                            <li><a href="@Url.Action("Details","Listdoc", new {firstname = item.firstname})">Book now</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     </div>   }
+
+
+
+
+
+
+
+        <!-- /strip_list -->
+
+        <nav aria-label="" class="add_top_20">
+            <ul class="pagination pagination-sm">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /pagination -->
+    </div>
+            <!-- /col -->
+
+            <aside class="col-lg-5" id="sidebar">
+                <div id="map_listing" class="normal_list">
+                </div>
+            </aside>
+            <!-- /aside -->
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->
+
+
+<script>
+                   $(document).ready(function () {
+
+                function Contains(text_one,text_two){
+                if(text_one.indexOf(text_two) != -1)
+	                return true;
+                }
+
+
+                $("#Search").keyup(function(){
+
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+
+                if(!Contains($(this).text().toLowerCase(),searchText))
+                     {      $(this).hide();}
+                     else{
+
+                $(this).show();
+                          }
+
+                    });
+
+                    });
+
+                        });
+</script>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Speciality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surgeon)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item1 in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item1.firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item1.lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item1.Speciality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item1.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item1.Surgeon)
+        </td>
+        <td>
+            <a href="@Url.Action("Details","Listdoc", new {firstname = item1.firstname})">add</a>
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+@section Scripts{
+    <script>
+                   $(document).ready(function () {
+
+                function Contains(text_one,text_two){
+                if(text_one.indexOf(text_two) != -1)
+	                return true;
+                }
+
+
+                $("#Search").keyup(function(){
+
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+
+                if(!Contains($(this).text().toLowerCase(),searchText))
+                     {      $(this).hide();}
+                     else{
+
+                $(this).show();
+                          }
+
+                    });
+
+                    });
+
+                        });
+    </script>
+}

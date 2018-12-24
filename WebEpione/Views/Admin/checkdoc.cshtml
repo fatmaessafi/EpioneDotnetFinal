@@ -1,0 +1,241 @@
+﻿@model WebEpione.Models.UserViewModel
+
+@{
+    ViewBag.Title = "checkdoc";
+    Layout = "~/Views/Shared/TemplateAdmin.cshtml";
+}
+
+<h2>checkdoc</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Speciality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.birthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibSpec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibADD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibNOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doctolibSPC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avalib)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Speciality)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibSpec)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibADD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibNOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doctolibSPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.avalib)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Check Correspondence Doctolib/Database</li>
+        </ol>
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Example Bar Chart Card-->
+                <div class="list_general">
+                    @if (Model.doctolibName != "")
+                    {
+                    <ul>
+                        <i class="read">MATCH FOUND !</i>
+                        <li>
+                            <figure><img src="~/ContentAdmin/img/doclogo.png" alt=""></figure>
+                            <small>@Html.DisplayFor(modelItem => Model.doctolibSpec)</small>
+                            <h4>@Html.DisplayFor(modelItem => Model.doctolibName)</h4>
+                            <p>@Html.DisplayFor(modelItem => Model.doctolibAdress)<br></p>
+                            <p><a href="@Url.Action("Redirect", "Admin", new { add = Model.doctolibADD,  nom = Model.doctolibNOM, spc = Model.doctolibSPC })"
+ class="btn_1 gray"><i class="fa fa-fw fa-user"></i> View profile</a></p>
+                            <ul class="buttons">
+                            </ul>
+                        </li>
+                    </ul>
+                    }
+
+                    else
+                    {
+                        <i class="unread">NO Correspondence IN DOCTOLIB</i>
+                    }
+
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <!-- Example Pie Chart Card-->
+                <div class="card mb-3">
+                    <div class="list_general">
+                      
+                          <ul>
+                            <li>
+                                <figure><img src="~/ContentAdmin/img/apple-touch-icon-144x144-precomposed.png" alt=""></figure>
+                                <h4>@Html.DisplayFor(modelItem => Model.FirstName) @Html.DisplayFor(modelItem => Model.LastName) <i class="pending">Pending</i></h4>
+                                <ul class="booking_details">
+                                    <li><strong>Adress</strong> @Html.DisplayFor(modelItem => Model.address)</li>
+                                    <li><strong>Specialty</strong> @Html.DisplayFor(modelItem => Model.Speciality)</li>
+                                    <li><strong>Gender</strong> @Html.DisplayFor(modelItem => Model.gender)</li>
+                                    <li><strong>Telephone</strong>@Html.DisplayFor(modelItem => Model.phoneNumber)</li>
+                                    <li><strong>Email</strong>@Html.DisplayFor(modelItem => Model.Email)</li>
+                                </ul>
+                                <ul class="buttons">
+                                    <li><a href="@Url.Action("Confirmer", "Admin", new { id = Model.Id })" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a></li>
+                                    <li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Send Notification</a></li>
+                                </ul>
+                            </li>
+                           
+                        </ul>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /container-fluid-->
+</div>
+<!-- /container-wrapper-->
+<footer class="sticky-footer">
+    <div class="container">
+        <div class="text-center">
+            <small>Copyright © FinDoctor 2017</small>
+        </div>
+    </div>
+</footer>
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<!-- Logout Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="vendor/datatables/jquery.dataTables.js"></script>
+<script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+<script src="vendor/jquery.selectbox-0.2.js"></script>
+<script src="vendor/retina-replace.min.js"></script>
+<script src="vendor/jquery.magnific-popup.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/admin.js"></script>
+<!-- Custom scripts for this page-->
+<script src="js/admin-charts-all.js"></script>
+

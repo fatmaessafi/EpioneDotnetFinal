@@ -1,0 +1,89 @@
+﻿@model WebEpione.Models.TreatmentViewModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="breadcrumb">
+    <div class="container">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>Patient profile</li>
+
+        </ul>
+    </div>
+</div>
+<!-- /breadcrumb -->
+@Html.Action("UserByIdInformations", "Home", new { id = TempData["idPatient"] })
+
+
+
+
+<div class="col-xl-9 col-lg-8">
+
+    <div class="tabs_styled_2">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href=@Url.Action("Index", "Treatment")>Treatments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=@Url.Action("Create", "Treatment")><i class="pe-7s-plus"></i> New treatment</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Appointments</a>
+            </li>
+        </ul>
+        <!--/nav-tabs -->
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="book" role="tabpanel" aria-labelledby="book-tab">
+                <p class="lead add_bottom_30">This is all the treatments that this patient is following.</p>
+
+                <div class="main_title_3">
+                    <h3>Delete treatment</h3>
+                </div>
+                <div class="form-group add_bottom_45">
+                    <dl class="dl-horizontal">
+                       
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Illness)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Illness)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Validation)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Validation)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Doctor)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Doctor)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    }
+                </div>
+                </div>
+</div>
+</div>
+</div>

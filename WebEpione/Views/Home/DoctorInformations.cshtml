@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebEpione.Models.DoctorViewModel>
+@{
+    Layout = null;
+}
+
+<div class="container margin_60">
+    <div class="row">
+        <aside class="col-xl-3 col-lg-4" id="sidebar">
+            <div class="box_profile">
+
+                <figure>
+
+                    <img src="~/Content/img/avatarblueprofile.png" alt="" class="img-fluid">
+                </figure>
+                <small>Doctor</small>
+                @foreach (var item in Model)
+                {
+
+                    <h1>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</h1>
+
+                    <ul class="statistic">
+
+                        <li>@Html.DisplayFor(modelItem=>item.Speciality)</li>
+                    </ul>
+                    <ul class="contacts">
+                        <li><h6>Surgeon</h6> @Html.DisplayFor(modelItem => item.Surgeon)</li>
+                        <li><h6>City</h6>@Html.DisplayFor(modelItem => item.City)</li>
+                        <li><h6>Location</h6>@Html.DisplayFor(modelItem => item.Location)</li>
+                        <li><h6>Phone</h6>+216 @Html.DisplayFor(modelItem => item.PhoneNumber)</li>
+                        
+
+                    </ul>
+                }
+            </div>
+        </aside>
+        <!-- /asdide -->
