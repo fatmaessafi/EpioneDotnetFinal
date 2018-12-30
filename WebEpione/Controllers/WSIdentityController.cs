@@ -82,7 +82,7 @@ namespace WebEpione.Controllers
                 case SignInStatus.Success:
                     {
                         UserService us = new UserService();
-                        User user = us.GetUserById(Int32.Parse(User.Identity.GetUserId()));
+                        User user = us.GetUserByEmail(model.Email);
                         return Ok(user);
                     }
                 case SignInStatus.LockedOut:
@@ -183,5 +183,14 @@ namespace WebEpione.Controllers
             }
 
         }
+        [System.Web.Http.Route("api/WSIdentity/GetCurrentUser")]
+
+        public IHttpActionResult GetCurrentUser()
+        {
+            UserService us = new UserService();
+            User user = us.GetUserById(Int32.Parse(User.Identity.GetUserId()));
+            return Ok(user);
+        }
+
     }
 }

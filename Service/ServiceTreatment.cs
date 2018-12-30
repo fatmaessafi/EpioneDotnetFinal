@@ -33,5 +33,7 @@ namespace Service
         {
             return GetAll().OfType<Treatment>().Where(t=>t.PatientId.Equals(id)).Count();
         }
+
+
     }
 }

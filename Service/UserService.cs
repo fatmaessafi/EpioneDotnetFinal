@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Infrastructure;
+using Domain;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -25,13 +26,16 @@ namespace Service
             return _db.Users.FirstOrDefault(User => User.Id == id);
         }
 
+        public User GetUserByEmail(String Email)
+        {
+            return _db.Users.FirstOrDefault(User => User.Email == Email);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return utwk.getRepository<User>().GetAll();
         }
 
-
-
-
+        
     }
 }

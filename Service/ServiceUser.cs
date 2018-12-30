@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Infrastructure;
+using Domain;
 
 namespace Service
 {
@@ -15,6 +16,13 @@ namespace Service
         private static IUnitOfWork uow = new UnitOfWork(dbfactory);
         public ServiceUser() : base(uow)
         {
+        }
+
+        public IEnumerable<User> GetAllPatients()
+        {
+
+            return GetAll().OfType<Patient>();
+        
         }
     }
 }

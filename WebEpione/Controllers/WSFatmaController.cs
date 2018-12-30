@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Entities;
 using Service;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,20 @@ namespace WebEpione.Controllers
 
     public class WSFatmaController : ApiController
     {
-
+        ServiceUser su = new ServiceUser();
         IServiceTreatment st = new ServiceTreatment();
         UserService us = new UserService();
         IServicePatient ps = new ServicePatient();
         IServiceStep ss = new ServiceStep();
+        IServiceStepRequest ssr = new ServiceStepRequest();
+
+        IServicePatient sp = new ServicePatient();
         [System.Web.Http.HttpGet]
-        public IEnumerable<Patient> GetAllPatient()
+        [System.Web.Http.Route("api/WSFatma/GetAllPatients")]
+
+        public IEnumerable<User> GetAllPatients()
         {
-            return ps.GetAll();
+            return su.GetAllPatients();
             // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
             // return st.GetListTreatmentOrdered(idUser);
         }
@@ -42,6 +48,9 @@ namespace WebEpione.Controllers
             // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
             // return st.GetListTreatmentOrdered(idUser);
         }
+
+        
+
         [System.Web.Http.HttpGet]
 
         public IEnumerable<Step> GetStepsByIdTreatment(int idTreatmentStep)
@@ -51,7 +60,7 @@ namespace WebEpione.Controllers
             // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
             // return st.GetListTreatmentOrdered(idUser);
         }
-      
+
         //public IHttpActionResult GetTreatmentById(int id)
         //{
         //    TreatmentViewModel tvm = null;
@@ -69,5 +78,39 @@ namespace WebEpione.Controllers
         //    return Ok(t);
         //}
 
+        [System.Web.Http.Route("api/WSFatma/GetStepRequestByDoctor/{idDoctor:int}")]
+        [System.Web.Http.HttpGet]
+        public IEnumerable<StepRequest> GetStepRequestByDoctor(int idDoctor)
+        {
+            List<StepRequest> list = new List<StepRequest>();
+
+            foreach (var item in ssr.GetListStepRequestOrdered(idDoctor))
+            {
+                StepRequest srvm = new StepRequest();
+                srvm.NewStepId = item.NewStepId;
+                srvm.NewTreatmentId = item.NewTreatmentId;
+                srvm.NewValidation = item.NewValidation;
+                srvm.NewLastModificationBy = item.NewLastModificationBy;
+                srvm.NewLastModificationDate = item.NewLastModificationDate;
+                srvm.NewModificationReason = item.NewModificationReason;
+                srvm.NewStepDate = item.NewStepDate;
+                srvm.NewStepDescription = item.NewStepDescription;
+                srvm.NewStepSpeciality = item.NewStepSpeciality;
+                srvm.Type = item.Type;
+
+                list.Add(srvm);
+
+
+
+            }
+            return list.AsEnumerable();
+        }
+
+        [System.Web.Http.Route("api/WSFatma/GetAllStepRequests")]
+        [System.Web.Http.HttpGet]
+        public IEnumerable<StepRequest> GetAllStepRequests()
+        {
+            return ssr.GetAll();
+        }
     }
 }
