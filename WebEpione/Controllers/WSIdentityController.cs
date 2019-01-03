@@ -183,12 +183,12 @@ namespace WebEpione.Controllers
             }
 
         }
-        [System.Web.Http.Route("api/WSIdentity/GetCurrentUser")]
+        [System.Web.Http.Route("api/WSIdentity/GetUserById/{id:int}")]
 
-        public IHttpActionResult GetCurrentUser()
+        public IHttpActionResult GetUserById(int id)
         {
             UserService us = new UserService();
-            User user = us.GetUserById(Int32.Parse(User.Identity.GetUserId()));
+            User user = us.GetUserById(id);
             return Ok(user);
         }
 

@@ -39,6 +39,26 @@ namespace WebEpione.Controllers
             // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
             // return st.GetListTreatmentOrdered(idUser);
         }
+        [System.Web.Http.Route("api/WSFatma/GetTreatmentByIdPatient/{idPatient:int}")]
+
+        [System.Web.Http.HttpGet]
+        public IEnumerable<Treatment> GetTreatmentByIdPatient(int idPatient)
+        {
+
+            return st.GetAll().Where(a => a.PatientId == idPatient);
+            // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
+            // return st.GetListTreatmentOrdered(idUser);
+        }
+        [System.Web.Http.Route("api/WSFatma/GetStepsByIdTreatment/{idTreatment:int}")]
+
+        [System.Web.Http.HttpGet]
+        public IEnumerable<Step> GetStepsByIdTreatment(int idTreatment)
+        {
+
+            return ss.GetAll().Where(a => a.TreatmentId == idTreatment);
+            // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
+            // return st.GetListTreatmentOrdered(idUser);
+        }
         [System.Web.Http.HttpGet]
 
         public IEnumerable<Treatment> GetTreatmentByPatient(int idPatient)
@@ -51,15 +71,7 @@ namespace WebEpione.Controllers
 
         
 
-        [System.Web.Http.HttpGet]
-
-        public IEnumerable<Step> GetStepsByIdTreatment(int idTreatmentStep)
-        {
-
-            return ss.GetAll().Where(a => a.TreatmentId == idTreatmentStep);
-            // st.GetAll().Where(a=>a.PatientId==idUser).ToList():
-            // return st.GetListTreatmentOrdered(idUser);
-        }
+       
 
         //public IHttpActionResult GetTreatmentById(int id)
         //{
